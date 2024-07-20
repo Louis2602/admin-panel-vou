@@ -5,6 +5,6 @@ export const usePromotions = () => {
   return useQuery({
     queryKey: ["promotions"],
     queryFn: () =>
-      axiosInstance.get("/get-promotions").then((res) => res.data.promotions),
+      axiosInstance.get("/promotions").then((res) => res.data.data),
   });
 };

@@ -12,8 +12,13 @@ export const dashboardConfig: DashboardConfig = {
         },
         {
           icon: "tag",
-          label: "Promotions",
-          href: "/dashboard/promotion",
+          label: "Brands",
+          href: "/dashboard/brands",
+        },
+        {
+          icon: "user",
+          label: "Users",
+          href: "/dashboard/users",
         },
       ],
     },

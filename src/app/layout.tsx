@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Brand Panel", "VOU", "Brand"],
+  keywords: ["Admin Panel", "VOU", "Admin"],
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",

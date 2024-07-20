@@ -5,16 +5,13 @@ export const useAccounts = () => {
   return useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      axiosInstance
-        .get("/admin/get-employees")
-        .then((res) => res.data.employees),
+      axiosInstance.get("/admin/get-employees").then((res) => res.data.data),
   });
 };
 
-export const useStaffs = () => {
+export const useBrands = () => {
   return useQuery({
-    queryKey: ["staffs"],
-    queryFn: () =>
-      axiosInstance.get("/admin/get-staffs").then((res) => res.data.staffs),
+    queryKey: ["brands"],
+    queryFn: () => axiosInstance.get("/brands").then((res) => res.data.data),
   });
 };
