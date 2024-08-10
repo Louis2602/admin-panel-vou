@@ -33,16 +33,16 @@ export function SignInForm() {
   const form = useForm<z.infer<typeof SignInSchema>>({
     mode: "onChange",
     resolver: zodResolver(SignInSchema),
-    defaultValues: { brandName: "", password: "" },
+    defaultValues: { username: "", password: "" },
   });
 
   const isLoading = form.formState.isSubmitting;
   const { login } = useAuth();
   const onSubmit: SubmitHandler<z.infer<typeof SignInSchema>> = async ({
-    brandName,
+    username,
     password,
   }) => {
-    await login(brandName, password);
+    await login(username, password);
   };
 
   return (
@@ -63,19 +63,19 @@ export function SignInForm() {
           <CardContent>
             <div className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="brandName">Brand Name</Label>
+                <Label htmlFor="username">Username</Label>
                 <FormField
                   disabled={isLoading}
                   control={form.control}
-                  name="brandName"
+                  name="username"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <Input
                           {...field}
                           type="text"
-                          id="brandName"
-                          placeholder="starbucks, pizza4ps, ..."
+                          id="username"
+                          placeholder="admin123"
                         />
                       </FormControl>
                       <FormMessage />

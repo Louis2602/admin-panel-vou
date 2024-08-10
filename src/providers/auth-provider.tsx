@@ -1,4 +1,6 @@
-import React, {
+"use client";
+
+import {
   createContext,
   useState,
   useContext,
@@ -15,7 +17,7 @@ interface AuthContextProps {
   login: (brandName: string, password: string) => Promise<void>;
   register: (data: any) => Promise<void>;
   logout: () => Promise<void>;
-  isAuthenticated: () => boolean;
+  isAuthenticated: boolean;
   loading: boolean;
 }
 
@@ -79,9 +81,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, []);
 
-  const isAuthenticated = () => {
-    return !!user;
-  };
+  const isAuthenticated = !!user;
 
   return (
     <AuthContext.Provider
