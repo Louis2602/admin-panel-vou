@@ -117,11 +117,6 @@ export function SignInForm() {
                 Login
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
-              <Link href="/auth/signup" className="underline">
-                Create a new brand account
-              </Link>
-            </div>
           </CardContent>
         </Card>
       </form>

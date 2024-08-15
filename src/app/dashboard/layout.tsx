@@ -18,16 +18,16 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const { isAuthenticated, user } = useAuth();
   const router = useRouter();
-  if (!isAuthenticated || user === null) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <Loader className="w-20 h-20" />
-      </div>
-    );
-  }
-  if (!isAuthenticated) {
-    router.push("/auth/signin");
-  }
+  // if (!isAuthenticated) {
+  //   router.push("/auth/signin");
+  // }
+  // if (user === null) {
+  //   return (
+  //     <div className="h-screen flex items-center justify-center">
+  //       <Loader className="w-20 h-20" />
+  //     </div>
+  //   );
+  // }
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
@@ -38,7 +38,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </Link>
           </div>
           <div className="flex-1 overflow-auto py-2">
-            <aside className="grid items-start px-4 text-sm font-medium h-full">
+            <aside className="grid items-start text-sm font-medium h-full">
               <Navigation />
             </aside>
           </div>

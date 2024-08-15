@@ -8,7 +8,7 @@ export const dashboardConfig: DashboardConfig = {
         {
           icon: "dashboard",
           label: "Dashboard",
-          href: "/dashboard",
+          href: "/dashboard/main",
         },
         {
           icon: "tag",
@@ -19,6 +19,11 @@ export const dashboardConfig: DashboardConfig = {
           icon: "user",
           label: "Users",
           href: "/dashboard/users",
+        },
+        {
+          icon: "games",
+          label: "Games",
+          href: "/dashboard/games",
         },
       ],
     },

@@ -92,7 +92,7 @@ export const BrandsList = ({ data }: BrandsListProps) => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link href={`/dashboard/brands/${brand.id}`}>
                   <div className="flex items-center gap-2">
                     <Pencil className="h-4 w-4" />
