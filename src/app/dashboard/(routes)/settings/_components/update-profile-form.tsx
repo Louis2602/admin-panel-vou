@@ -42,8 +42,8 @@ export const UpdateProfileForm = () => {
     mode: "onSubmit",
     defaultValues: {
       name: user.name || "",
-      address: user.address || "",
-      status: user.status || "ACTIVE",
+      email: user.email || "",
+      role: user.role || "admin",
     },
   });
 
@@ -57,7 +57,7 @@ export const UpdateProfileForm = () => {
           name="name"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Brand Name</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -67,10 +67,10 @@ export const UpdateProfileForm = () => {
         />
         <FormField
           control={form.control}
-          name="address"
+          name="email"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Address</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -79,24 +79,24 @@ export const UpdateProfileForm = () => {
           )}
         />
         <div className="grid gap-2">
-          <Label htmlFor="status">Status</Label>
+          <Label htmlFor="role">Role</Label>
           <FormField
             disabled={isLoading}
             control={form.control}
-            name="status"
+            name="role"
             render={({ field }) => (
               <FormItem>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select your brand status" />
+                      <SelectValue placeholder="Select your role" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Status</SelectLabel>
-                      <SelectItem value="ACTIVE">Active</SelectItem>
-                      <SelectItem value="INACTIVE">Inactive</SelectItem>
+                      <SelectLabel>Role</SelectLabel>
+                      <SelectItem value="admin">Admin</SelectItem>
+                      <SelectItem value="user">User</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>

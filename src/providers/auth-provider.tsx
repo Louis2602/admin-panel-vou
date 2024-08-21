@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation";
 interface AuthContextProps {
   user: User | null;
   login: (brandName: string, password: string) => Promise<void>;
-  register: (data: any) => Promise<void>;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
   loading: boolean;
@@ -29,22 +28,22 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const login = async (brandName: string, password: string) => {
+  const login = async (username: string, password: string) => {
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/brands", {
-        brandName,
+      const res = await axiosInstance.post("/users/login", {
+        username,
         password,
       });
-      const userData = res.data.user;
+      const userData = res.data.data;
       if (userData) {
         setUser(userData);
         localStorage.setItem("auth", JSON.stringify(userData));
+        toast.success("Login successfully");
+        router.push("/dashboard");
+      } else {
+        toast.error("Failed to login");
       }
-
-      toast.success("Login successfully");
-
-      router.push("/dashboard");
     } catch (error: any) {
       console.error("Login failed:", error.response.data);
       toast.error("Something went wrong");
@@ -53,19 +52,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const register = async (data: any) => {
-    console.log(data);
-  };
-
   const logout = async () => {
     setLoading(true);
     try {
       setUser(null);
       localStorage.removeItem("auth");
 
-      await axiosInstance.get("/logout");
       toast.success("Logout successfully");
-      router.push("/auth/login");
+      router.push("/auth/signin");
     } catch (error: any) {
       console.error("Logout failed:", error.response.data);
       toast.error("Failed to logout");
@@ -85,7 +79,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, login, register, logout, isAuthenticated, loading }}
+      value={{ user, login, logout, isAuthenticated, loading }}
     >
       {children}
     </AuthContext.Provider>

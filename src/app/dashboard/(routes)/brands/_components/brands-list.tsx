@@ -14,70 +14,17 @@ interface BrandsListProps {
   data: Brand[];
 }
 
-export const dummyData = [
-  {
-    id: 1,
-    name: "Brand One",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+One",
-  },
-  {
-    id: 2,
-    name: "Brand Two",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Two",
-  },
-  {
-    id: 3,
-    name: "Brand Three",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Three",
-  },
-  {
-    id: 4,
-    name: "Brand Four",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Four",
-  },
-  {
-    id: 5,
-    name: "Brand Five",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Five",
-  },
-  {
-    id: 6,
-    name: "Brand Six",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Six",
-  },
-  {
-    id: 7,
-    name: "Brand Seven",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Seven",
-  },
-  {
-    id: 8,
-    name: "Brand Eight",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Eight",
-  },
-  {
-    id: 9,
-    name: "Brand Nine",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Nine",
-  },
-  {
-    id: 10,
-    name: "Brand Ten",
-    logoUrl: "https://via.placeholder.com/100x100.png?text=Brand+Ten",
-  },
-];
-
 export const BrandsList = ({ data }: BrandsListProps) => {
   const onDelete = () => {};
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-      {dummyData.map((brand) => (
+      {data.map((brand) => (
         <div
           key={brand.id}
           className="relative flex flex-col items-center justify-center p-4 bg-white border rounded-lg shadow-md"
         >
           <Image
-            src={brand.logoUrl}
+            src={brand.logoUrl!}
             alt={brand.name}
             width={80}
             height={40}

@@ -1,52 +1,37 @@
 import { axiosInstance } from "@/lib/api";
-import { Promotion } from "@/types/brand";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-export const useCreatePromotion = () => {
+export const useActivateBrand = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (newPromotion: Promotion) =>
-      axiosInstance.post("/admin/create-promotion", newPromotion),
+    mutationFn: (id: string) => axiosInstance.patch(`/brands/${id}/activate`),
     onError: (error) => {
       toast.error("An error occurred: " + error.message);
     },
-    onSettled: async (_, error) => {
-      await queryClient.invalidateQueries({ queryKey: ["promotions"] });
-      toast.success("Add new promotion successfully");
-    },
-  });
-};
-
-export const useUpdatePromotion = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (updatedPromotion: Promotion) =>
-      axiosInstance.put("/admin/update-promotion", updatedPromotion),
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-    onSettled: async (_, error, variables) => {
-      await queryClient.invalidateQueries({ queryKey: ["promotions"] });
+    onSettled: async (_, error, id: string) => {
+      await queryClient.invalidateQueries({ queryKey: ["brands"] });
       await queryClient.invalidateQueries({
-        queryKey: ["promotions", { id: variables.id }],
+        queryKey: ["brands", { id }],
       });
-      toast.success("Update promotion successfully");
+      toast.success("Brand activated successfully");
     },
   });
 };
 
-export const useDeletePromotion = () => {
+export const useDeactivateBrand = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (proId: string) =>
-      axiosInstance.delete(`/admin/delete-promotion/${proId}`),
+    mutationFn: (id: string) => axiosInstance.patch(`/brands/${id}/deactivate`),
     onError: (error) => {
       toast.error("An error occurred: " + error.message);
     },
-    onSettled: async (_, error) => {
-      await queryClient.invalidateQueries({ queryKey: ["promotions"] });
-      toast.success("Promotion deleted successfully");
+    onSettled: async (_, error, id: string) => {
+      await queryClient.invalidateQueries({ queryKey: ["brands"] });
+      await queryClient.invalidateQueries({
+        queryKey: ["brands", { id }],
+      });
+      toast.success("Brand deactivated successfully");
     },
   });
 };

@@ -13,6 +13,9 @@ import { Heading } from "@/components/global/heading";
 import { useAccounts } from "@/server/brand/query";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/global/empty";
+import { UserTable } from "@/components/tables/user/table";
+import { columns } from "@/components/tables/user/column";
+import { CreateUserForm } from "./_components/create-user-form";
 
 const BrandsPage = () => {
   const { data: users } = useAccounts();
@@ -38,14 +41,13 @@ const BrandsPage = () => {
                 Fill in all the information fields below.
               </SheetDescription>
             </SheetHeader>
-            {/* <CreateUserForm /> */}
+            <CreateUserForm />
           </SheetContent>
         </div>
         {users === undefined ? (
           <Empty text="No user accounts available." />
         ) : (
-          <>Hello</>
-          /* <UserTable columns={columns} data={events} /> */
+          <UserTable columns={columns} data={users} />
         )}
       </div>
     </Sheet>

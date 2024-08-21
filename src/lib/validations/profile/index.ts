@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-const StatusEnum = z.enum(["ACTIVE", "INACTIVE"]);
+const RoleEnum = z.enum(["admin", "user"]);
 
 export const updateProfileSchema = z.object({
   name: z
@@ -10,12 +10,12 @@ export const updateProfileSchema = z.object({
     })
     .max(50)
     .optional(),
-  address: z
+  email: z
     .string()
     .min(2, {
-      message: "The address must be at least 2 characters long",
+      message: "Admin email",
     })
     .max(50)
     .optional(),
-  status: StatusEnum.optional(),
+  role: RoleEnum.optional(),
 });
