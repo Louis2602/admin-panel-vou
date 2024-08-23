@@ -1,10 +1,7 @@
 "use client";
 
-import { UserButton } from "@/components/auth/user-button";
-import {
-  MobileNavigation,
-  Navigation,
-} from "@/components/dashboard/nav/navigation";
+import { Header } from "@/components/dashboard/nav/header";
+import { Navigation } from "@/components/dashboard/nav/navigation";
 import { Loader } from "@/components/global/loader";
 import { Logo } from "@/components/global/logo";
 import { useAuth } from "@/providers/auth-provider";
@@ -18,16 +15,16 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const { isAuthenticated, user } = useAuth();
   const router = useRouter();
-  // if (!isAuthenticated) {
-  //   router.push("/auth/signin");
-  // }
-  // if (user === null) {
-  //   return (
-  //     <div className="h-screen flex items-center justify-center">
-  //       <Loader className="w-20 h-20" />
-  //     </div>
-  //   );
-  // }
+  if (!isAuthenticated) {
+    router.push("/auth/signin");
+  }
+  if (user === null) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader className="w-20 h-20" />
+      </div>
+    );
+  }
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
@@ -45,12 +42,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </div>
       </div>
       <div className="flex flex-col">
-        <header className="flex h-14 lg:h-[64px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40 justify-between lg:justify-end">
-          <div className="flex items-center gap-2 font-semibold lg:hidden">
-            <MobileNavigation />
-          </div>
-          <UserButton currentUser={user} />
-        </header>
+        <Header />
         <section className="relative p-6 w-full h-full">{children}</section>
       </div>
     </div>
