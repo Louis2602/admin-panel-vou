@@ -5,7 +5,7 @@ import { User } from "@/types/user";
 import { Loader } from "../global/loader";
 
 interface UserButtonProps {
-  currentUser: User;
+  currentUser: User | null;
 }
 
 export const UserButton = ({ currentUser }: UserButtonProps) => {

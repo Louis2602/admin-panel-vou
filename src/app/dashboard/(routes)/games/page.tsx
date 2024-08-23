@@ -1,7 +1,7 @@
 import { Heading } from "@/components/global/heading";
 import { Dices } from "lucide-react";
 import type { Metadata } from "next";
-import GamesListPage from "./_components/game-list";
+import { GamesListPage } from "./_components/game-list";
 
 export const metadata: Metadata = {
   title: "Games",
