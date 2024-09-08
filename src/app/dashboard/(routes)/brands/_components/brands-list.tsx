@@ -5,10 +5,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Brand } from "@/types/brand";
-import Image from "next/image";
 import { MoreVertical, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
+import { Badge } from "@/components/ui/badge";
 
 interface BrandsListProps {
   data: Brand[];
@@ -21,16 +21,22 @@ export const BrandsList = ({ data }: BrandsListProps) => {
       {data.map((brand) => (
         <div
           key={brand.id}
-          className="relative flex flex-col items-center justify-center p-4 bg-white border rounded-lg shadow-md"
+          className="relative flex flex-col gap-4 items-start p-4 bg-white border rounded-lg shadow-md"
         >
-          <Image
-            src={brand.logoUrl!}
-            alt={brand.name}
-            width={80}
-            height={40}
-            className="object-contain mb-2"
-          />
-          <span className="text-sm font-medium text-center">{brand.name}</span>
+          <span className="text-2xl font-bold text-center">{brand.name}</span>
+          <div className="flex items-center gap-2">
+            <Badge
+              variant={brand.status === "ACTIVE" ? "success" : "destructive"}
+            >
+              {brand.status}
+            </Badge>
+            <span className="text-sm font-medium text-center">
+              {brand.industry}
+            </span>
+          </div>
+          <span className="text-sm text-center text-muted-foreground">
+            {brand.address}
+          </span>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-600">

@@ -30,18 +30,14 @@ export const NotificationCard = ({
     return <div className="text-center py-4">Loading...</div>;
   }
 
-  // Filter unread notifications
-  const unreadNotifications =
-    notifications?.filter((notification) => !notification.isRead) || [];
-
   return (
     <div className="space-y-4">
-      {unreadNotifications.length === 0 ? (
+      {notifications.length === 0 ? (
         <p className="text-center text-gray-500">No new notifications</p>
       ) : (
         <>
           <div className="space-y-2">
-            {unreadNotifications.map((notification) => (
+            {notifications.map((notification) => (
               <div
                 key={notification.id}
                 className="flex items-start space-x-4 p-3 hover:bg-gray-100 rounded-lg transition-colors duration-200"

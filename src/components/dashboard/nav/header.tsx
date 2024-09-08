@@ -18,7 +18,8 @@ export const Header = () => {
   const { data: notifications, isLoading } = useNotifications();
   const unreadNotifications =
     notifications?.filter(
-      (notification: Notification) => !notification.isRead,
+      (notification: Notification) =>
+        !notification.isRead && notification.eventId === null,
     ) || [];
   const numUnreadNoti = unreadNotifications.length;
 
@@ -49,7 +50,7 @@ export const Header = () => {
               </p>
             </div>
             <NotificationCard
-              notifications={notifications}
+              notifications={unreadNotifications}
               isLoading={isLoading}
             />
           </div>
